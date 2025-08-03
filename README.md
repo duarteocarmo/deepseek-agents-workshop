@@ -1,3 +1,5 @@
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/duarteocarmo/deepseek-agents-workshop)
+
 # Workshop: Agentic AI with DeepSeek
 
 This is a tutorial about building agents with DeepSeek. The goal is to give you a brief introduction to agents and how you can build production ready agents with DeepSeek. 
