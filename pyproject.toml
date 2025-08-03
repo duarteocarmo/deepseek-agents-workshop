@@ -1,5 +1,5 @@
 [project]
-name = "workshopagents"
+name = "deepseek-agents-workshop"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -18,3 +18,4 @@ dependencies = [
     "rank-bm25>=0.2.2",
     "requests>=2.32.4",
 ]
+
