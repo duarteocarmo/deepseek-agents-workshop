@@ -25,7 +25,8 @@
                 "redhat.vscode-yaml",
                 "shardulm94.trailing-spaces",
                 "tamasfe.even-better-toml",
-                "yzhang.markdown-all-in-one"
+                "yzhang.markdown-all-in-one",
+				"ms-toolsai.jupyter"
             ]
         }
     },
@@ -33,9 +34,9 @@
         "DISPLAY": "dummy",
         "PYTHONUNBUFFERED": "True",
         "UV_LINK_MODE": "copy",
-        "UV_PROJECT_ENVIRONMENT": "/home/vscode/.venv"
+        "UV_PROJECT_ENVIRONMENT": "/workspaces/deepseek-agents-workshop/.venv"
     },
     "postCreateCommand": "uv sync --frozen",
-    "postStartCommand": "uv run pre-commit install",
+    "postStartCommand": ". /workspaces/deepseek-agents-workshop/.venv/bin/activate",
     "remoteUser": "vscode"
 }
