@@ -8,12 +8,12 @@ This is a tutorial about building agents with DeepSeek. The goal is to give you 
 
 1. Clone the repo:
    ```
-   git clone git@github.com:PacktPublishing/Deepseek-Essentials.git
+   git clone git@github.com:duarteocarmo/deepseek-agents-workshop.git
    ```
 2. Make sure you have [uv](https://docs.astral.sh/uv/getting-started/installation/) installed. If not, install it.
 3. Change directory to the project:
    ```
-   cd Deepseek-Essentials/WorkshopAgents
+   cd deepseek-agents-workshop
    ```
 4. Sync dependencies:
    ```
@@ -29,10 +29,16 @@ This is a tutorial about building agents with DeepSeek. The goal is to give you 
      ```
      source .venv/bin/activate
      ```
-6. Open your IDE (for example, VS Code or Cursor):
+6. Set up your DeepSeek API key:
+   - Visit https://platform.deepseek.com
+   - Set up billing
+   - Create a new API key
+   - Add the API key to the `.envrc` file as `DEEPSEEK_API_KEY=sk-XXXXXXX`
+
+7. Open your IDE (for example, VS Code or Cursor):
    ```
    code .
    ```
-7. Open the `00-welcome.ipynb` notebook in your IDE.
+8. Open the `00-welcome.ipynb` notebook in your IDE.
 
-8. Run the notebook to verify your environment is set up correctly.
+9. Run the notebook to verify your environment is set up correctly.
