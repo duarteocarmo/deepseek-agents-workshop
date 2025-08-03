@@ -1,29 +1,57 @@
-# Use a Python image with uv pre-installed
-FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+# syntax=docker/dockerfile:1.4
 
-# Install the project into `/app`
-WORKDIR /app
+############
+# Stages
+############
+FROM python:3.12-slim-bookworm AS base
 
-# Enable bytecode compilation
-ENV UV_COMPILE_BYTECODE=1
+FROM base AS builder
+# uv binary
+COPY --from=ghcr.io/astral-sh/uv:0.4.9 /uv /usr/local/bin/uv
+ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
 
-# Copy from the cache instead of linking since it's a mounted volume
-ENV UV_LINK_MODE=copy
+# Binder-standard user
+ARG NB_USER=jovyan
+ARG NB_UID=1000
+ENV USER=${NB_USER} \
+    HOME=/home/${NB_USER}
+RUN adduser --disabled-password --gecos "Default user" --uid ${NB_UID} ${NB_USER}
 
-# Install the project's dependencies using the lockfile and settings
+WORKDIR ${HOME}/app
+
+# Dependencies first (caches layer nicely)
+COPY uv.lock pyproject.toml ./
 RUN --mount=type=cache,target=/root/.cache/uv \
-    --mount=type=bind,source=uv.lock,target=uv.lock \
-    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --locked --no-install-project --no-dev
+    uv sync --frozen --no-install-project --no-dev
 
-# Then, add the rest of the project source code and install it
-# Installing separately from its dependencies allows optimal layer caching
-COPY . /app
+# Binder needs the notebook stack
+RUN python -m pip install --no-cache-dir --upgrade pip && \
+    python -m pip install --no-cache-dir notebook jupyterlab
+
+# Project source
+COPY . .
 RUN --mount=type=cache,target=/root/.cache/uv \
-    uv sync --locked --no-dev
+    uv sync --frozen --no-dev
 
-# Place executables in the environment at the front of the path
-ENV PATH="/app/.venv/bin:$PATH"
+###############################################################################
+FROM base AS runtime
+# uv again for dev shells inside Binder
+COPY --from=ghcr.io/astral-sh/uv:0.4.9 /uv /usr/local/bin/uv
+ENV UV_COMPILE_BYTECODE=1 UV_LINK_MODE=copy
 
-# Reset the entrypoint, don't invoke `uv`
-ENTRYPOINT []
+# Copy built venv + code
+COPY --from=builder /home/jovyan/app /home/jovyan/app
+
+# Recreate Binder user so UID/GID is correct
+ARG NB_USER=jovyan
+ARG NB_UID=1000
+ENV USER=${NB_USER} \
+    HOME=/home/${NB_USER}
+RUN adduser --disabled-password --gecos "Default user" --uid ${NB_UID} ${NB_USER} && \
+    chown -R ${NB_UID} ${HOME}
+
+# Use project venv first
+ENV PATH="/home/jovyan/app/.venv/bin:${PATH}"
+
+USER ${NB_USER}
+WORKDIR ${HOME}
