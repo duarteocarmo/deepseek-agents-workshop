@@ -33,7 +33,7 @@ This is a tutorial about building agents with DeepSeek. The goal is to give you 
    - Visit https://platform.deepseek.com
    - Set up billing
    - Create a new API key
-   - Add the API key to the `.envrc` file as `DEEPSEEK_API_KEY=sk-XXXXXXX`
+   - Add the API key to the `api_keys.env` file as `DEEPSEEK_API_KEY=sk-XXXXXXX`
 
 7. Open your IDE (for example, VS Code or Cursor):
    ```
