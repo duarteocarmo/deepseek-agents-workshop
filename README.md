@@ -4,7 +4,15 @@
 
 This is a tutorial about building agents with DeepSeek. The goal is to give you a brief introduction to agents and how you can build production ready agents with DeepSeek. 
 
-## Setup 
+
+## Cloud setup (easiest)
+
+Click one of the buttons above. 
+
+- I am pretty sure binder is free - and it's a good option 
+- I am not sure GitHub codespaces is free, so you might have to pay some cents for it (not sure)
+
+## Local setup 
 
 1. Clone the repo:
    ```
