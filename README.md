@@ -1,4 +1,4 @@
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/duarteocarmo/deepseek-agents-workshop)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/duarteocarmo/deepseek-agents-workshop) [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/duarteocarmo/deepseek-agents-workshop/HEAD)
 
 # Workshop: Agentic AI with DeepSeek
 
