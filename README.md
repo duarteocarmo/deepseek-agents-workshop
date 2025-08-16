@@ -9,8 +9,11 @@ This is a tutorial about building agents with DeepSeek. The goal is to give you 
 
 Click one of the buttons above. 
 
-- I am pretty sure binder is free - and it's a good option 
-- I am not sure GitHub codespaces is free, so you might have to pay some cents for it (not sure)
+- Click "open in github codespaces" above. You are probably still within the [free quota](https://docs.github.com/en/billing/concepts/product-billing/github-codespaces#free-quota)
+- If github codespaces is not working, you can try binder (badge above)
+- If none of those are working, each notebook has a google colab button as well 
+- If nothing works, then you can setup locally
+- If you are still having problems - let me know and I will try to help
 
 ## Local setup 
 
